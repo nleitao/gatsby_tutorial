@@ -12,6 +12,9 @@
 //    <Link to="/">Go back to the homepage</Link>
 //  </Layout>
 //)
+//export default SecondPage
+
+
 
 
 import { graphql } from "gatsby"
@@ -19,7 +22,7 @@ import React from "react"
 
 class IndexComponent extends React.Component {
   render() {
-    const data = this.props.data.allLettersCsv.edges
+    const data = this.props.data.allTargetCsv.edges
     return (
       <div>
         <table>
@@ -31,9 +34,9 @@ class IndexComponent extends React.Component {
           </thead>
           <tbody>
             {data.map((row, i) => (
-              <tr key={`${row.node.value} ${i}`}>
-                <td>{row.node.letter}</td>
-                <td>{row.node.value}</td>
+              <tr key={`${row.node.ID} ${i}`}>
+                <td>{row.node.Salary}</td>
+                <td>{row.node.ID}</td>
               </tr>
             ))}
           </tbody>
@@ -47,15 +50,14 @@ export default IndexComponent
 
 export const IndexQuery = graphql`
   query {
-    allLettersCsv {
+    allTargetCsv {
       edges {
         node {
-          letter
-          value
+          ID
+          Salary
         }
       }
     }
   }
 `
 
-export default SecondPage
